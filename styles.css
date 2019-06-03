@@ -1,6 +1,57 @@
 .centered-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.settings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 50px;
+}
+
+.settings > .item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.settings > .item > label {
+  padding-right: 5px;
+  padding-left: 25px;
+}
+
+input[type="number"] {
+  width: 50px;
+}
+
+input[type="radio"] {
+  margin-left: 10px;
+}
+
+.switch {
+  margin-top: 50px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.switch.off {
+  background-color: #cf2222;
+}
+
+.switch.off:hover {
+    background-color: #e67272;
+}
+
+.switch.on {
+    background-color: #176617;
+}
+
+.switch.on:hover {
+    background-color: #69be69;
 }

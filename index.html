@@ -7,10 +7,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <link href="styles.css" rel="stylesheet" type="text/css" media="all">
     <script type="text/javascript" src="plotter.js"></script>
+    <script type="text/javascript" src="signal.js"></script>
     <script type="text/javascript" src="index.js"></script>
 </head>
 
 <body class="centered-column">
-    <canvas id="plot" class="plot" width=300 height=240></canvas>
+    <canvas id="plot" class="plot" width=600 height=480></canvas>
+
+    <div class="settings">
+        <div class="item">
+            <label>Частота, Гц</label> <input type="number" value="1" id="frequency" />
+        </div>
+        <div class="item">
+            <label>Амплiтуда</label> <input type="number" value="90" id="amplitude" />
+        </div>
+        <div class="item">
+            <label>Тривалiсть, с</label>
+            <input type="radio" name="duration" value="6" checked="checked" > <span>6</span>
+            <input type="radio" name="duration" value="3"> <span>3</span>
+            <input type="radio" name="duration" value="1.5"> <span>1.5</span>
+        </div>
+    </div>
+
+    <div class="switch off" id="on-switch"></div>
 </body>
+
 </html>

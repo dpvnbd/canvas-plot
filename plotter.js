@@ -1,27 +1,26 @@
 const styles = {
     background: { fillColor: "#000000" },
     grid: { color: "#bbbbbb", width: 1 },
-    mainGrid: { color: "#bbbbbb", width: 4 },
-    line: { color: "#ffffff", widith: 4 },
+    axis: { color: "#bbbbbb", width: 4 },
+    line: { color: "#ff00ff", width: 4 },
 }
 
 class Plotter {
-    constructor(ctx) {
-        this.ctx = ctx;
+    constructor(canvas) {
+        this.ctx = canvas.getContext("2d");;
         this.width = this.ctx.canvas.width;
         this.height = this.ctx.canvas.height;
     }
 
     drawLine(points) {
-        if (points.lengt < 2) {
+        if (points.length < 2) {
             return
         }
         this.setStyle('line')
         this.ctx.beginPath();
         const [x0, y0] = points[0];
         this.ctx.moveTo(x0, y0);
-        for (let i = 1; i < points.length; i++) {
-            const [x, y] = points[i];
+        for (let [x, y] of points.slice(1)) {
             this.ctx.lineTo(x, y);
         }
         this.ctx.stroke();
@@ -37,6 +36,7 @@ class Plotter {
             this.ctx.fillStyle = fillColor;
     }
 
+
     drawGrid() {
         this.ctx.clearRect(0, 0, this.width, this.height);
         this.setStyle('background')
@@ -45,7 +45,7 @@ class Plotter {
         const yCenter = this.height / 2;
         const xCenter = this.width / 2;
 
-        this.setStyle('mainGrid')
+        this.setStyle('axis')
         this.ctx.beginPath();
         this.ctx.moveTo(xCenter, 0);
         this.ctx.lineTo(xCenter, this.height);
