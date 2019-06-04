@@ -43,15 +43,12 @@ input[type="radio"] {
   display: inline-block;
   background-color: #cf2222;
 }
-
 .switch:hover {
     background-color: #e67272;
 }
-
 .switch.on {
     background-color: #176617;
 }
-
 .switch.on:hover {
     background-color: #69be69;
 }

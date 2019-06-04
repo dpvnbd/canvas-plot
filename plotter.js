@@ -37,7 +37,6 @@ class Plotter {
     }
 
     drawGrid() {
-        this.ctx.clearRect(0, 0, this.width, this.height);
         this.setStyle('background')
         this.ctx.fillRect(0, 0, this.width, this.height);
 
@@ -52,16 +51,13 @@ class Plotter {
         this.ctx.lineTo(this.width, yCenter);
         this.ctx.stroke();
 
-        // const horizontalSquares = 10;
-        // const squareSize = this.width / horizontalSquares;
-
         const squareSize = 30;
         const horizontalSquares = this.width / squareSize;
         const verticalSquares = Math.ceil(this.height / squareSize)
 
         this.setStyle('grid');
         this.ctx.beginPath();
-        for (let i = 1; i < horizontalSquares; i++) {
+        for (let i = 1; i < horizontalSquares / 2; i++) {
             const offset = i * squareSize;
             this.ctx.moveTo(xCenter + offset, 0);
             this.ctx.lineTo(xCenter + offset, this.height);
@@ -70,7 +66,7 @@ class Plotter {
             this.ctx.stroke();
         }
 
-        for (let i = 1; i < verticalSquares; i++) {
+        for (let i = 1; i < verticalSquares / 2; i++) {
             const offset = i * squareSize;
             this.ctx.moveTo(0, yCenter + offset);
             this.ctx.lineTo(this.width, yCenter + offset);

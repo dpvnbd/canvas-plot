@@ -61,7 +61,7 @@ function delayedDraw(plotter, A, drawingDelay, Tx, width, height) {
     drawingInterval = setInterval(() => {
         const pointsPair = points.slice(currentPoint, currentPoint + 2)
         plotter.drawLine(pointsPair);
-        if (currentPoint + 1 >= points.length - 1) {
+        if (currentPoint >= points.length - 1) {
             plotter.drawGrid();
             currentPoint = 0;
             return;
