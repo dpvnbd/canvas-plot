@@ -3,14 +3,17 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  padding-top: 50px;
+}
+
+.plot {
+  padding-top: 20px;
 }
 
 .settings {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 .settings > .item {
@@ -33,18 +36,15 @@ input[type="radio"] {
 }
 
 .switch {
-  margin-top: 50px;
+  margin-top: 20px;
   height: 50px;
   width: 50px;
   border-radius: 50%;
   display: inline-block;
-}
-
-.switch.off {
   background-color: #cf2222;
 }
 
-.switch.off:hover {
+.switch:hover {
     background-color: #e67272;
 }
 

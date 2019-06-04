@@ -12,50 +12,21 @@ $(() => {
     setUp();
 });
 
-function drawPlot({ frequency, amplitude, duration }) {
-    const { drawingDelay, Tx } = getParameters(duration, frequency, width);
-    delayedDraw(plotter, amplitude, drawingDelay, Tx, width, height);
-}
-
-function delayedDraw(plotter, A, drawingDelay, Tx, width, height) {
-    plotter.drawGrid();
-
-    const fromX = 0;
-    const toX = width;
-    let x = fromX;
-
-    drawingInterval = setInterval(() => {
-        const points = getPoints(A, Tx, fromX, x, height);
-        plotter.drawLine(points);
-        if (x >= toX) {
-            clearInterval(drawingInterval);
-        }
-        x += 1;
-    }, drawingDelay);
-}
-
-function clearPlot() {
-    clearInterval(drawingInterval);
-    plotter.drawGrid();
-}
-
 function setUp() {
-    clearPlot();
+    stopDrawing();
     const onSwitch = $("#on-switch");
     onSwitch.click(() => {
         turnedOn = !turnedOn;
         onSwitch.toggleClass("on");
-        onSwitch.toggleClass("off");
-
         if (turnedOn) {
             const settings = getSettings();
             if (!settingsValid(settings)) {
-                alert("Invalid");
+                alert("Невірні параметри сигналу");
                 return;
             }
             drawPlot(settings);
         } else {
-            clearPlot();
+            stopDrawing();
         }
     }
     )
@@ -75,4 +46,31 @@ function getSettings() {
 
 function settingsValid(settings) {
     return !Object.values(settings).some(isNaN);
+}
+
+function drawPlot({ frequency, amplitude, duration }) {
+    const { drawingDelay, Tx } = getParameters(duration, frequency, width);
+    delayedDraw(plotter, amplitude, drawingDelay, Tx, width, height);
+}
+
+function delayedDraw(plotter, A, drawingDelay, Tx, width, height) {
+    const fromX = 0;
+    const toX = width;
+    const points = getPoints(A, Tx, fromX, toX, height);
+    let currentPoint = 0;
+    drawingInterval = setInterval(() => {
+        const pointsPair = points.slice(currentPoint, currentPoint + 2)
+        plotter.drawLine(pointsPair);
+        if (currentPoint + 1 >= points.length - 1) {
+            plotter.drawGrid();
+            currentPoint = 0;
+            return;
+        }
+        currentPoint += 1;
+    }, drawingDelay);
+}
+
+function stopDrawing() {
+    clearInterval(drawingInterval);
+    plotter.drawGrid();
 }

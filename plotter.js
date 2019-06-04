@@ -2,7 +2,7 @@ const styles = {
     background: { fillColor: "#000000" },
     grid: { color: "#bbbbbb", width: 1 },
     axis: { color: "#bbbbbb", width: 4 },
-    line: { color: "#ff00ff", width: 4 },
+    line: { color: "#00ff00", width: 4 },
 }
 
 class Plotter {
@@ -36,7 +36,6 @@ class Plotter {
             this.ctx.fillStyle = fillColor;
     }
 
-
     drawGrid() {
         this.ctx.clearRect(0, 0, this.width, this.height);
         this.setStyle('background')
@@ -53,8 +52,11 @@ class Plotter {
         this.ctx.lineTo(this.width, yCenter);
         this.ctx.stroke();
 
-        const horizontalSquares = 10;
-        const squareSize = this.width / horizontalSquares;
+        // const horizontalSquares = 10;
+        // const squareSize = this.width / horizontalSquares;
+
+        const squareSize = 30;
+        const horizontalSquares = this.width / squareSize;
         const verticalSquares = Math.ceil(this.height / squareSize)
 
         this.setStyle('grid');
